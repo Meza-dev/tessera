@@ -1,0 +1,13 @@
+import type { Preview } from '@storybook/react-vite';
+import '../packages/tokens/fonts.css';
+import '../packages/tokens/theme.css';
+import '../packages/motion/motion.css';
+import '../packages/ui/styles.css';
+import './preview.css';
+const preview: Preview = {
+  parameters: {
+    backgrounds: { options: { dark: { name: 'Dark', value: 'var(--jl-bg)' } } },
+  },
+  initialGlobals: { backgrounds: { value: 'dark' } },
+};
+export default preview;

@@ -1,0 +1,44 @@
+/* Jonas Lab v0.1 — provisional brand values. Adjust here, not in components. */
+:root {
+  color-scheme: dark;
+  --jl-bg: #0c0d10;
+  --jl-surface: #15171b;
+  --jl-surface-raised: #1d2026;
+  --jl-border: #303238;
+  --jl-text: #f5f5f7;
+  --jl-text-muted: #a1a4ad;
+  --jl-cyan: #45b7c9;
+  --jl-violet: #987dbb;
+  --jl-accent: var(--jl-cyan);
+  --jl-accent-foreground: #071014;
+  --jl-accent-rgb: 69, 183, 201;
+  --jl-radius-sm: 8px;
+  --jl-radius-md: 12px;
+  --jl-radius-lg: 18px;
+  --jl-space-1: 4px; --jl-space-2: 8px; --jl-space-3: 12px;
+  --jl-space-4: 16px; --jl-space-6: 24px; --jl-space-8: 32px;
+  --jl-space-12: 48px;
+  --jl-control-padding-block: var(--jl-space-3);
+  --jl-control-padding-inline: 18px;
+  --jl-control-gap: 10px;
+  --jl-control-min-height: 42px;
+  --jl-control-disabled-opacity: .5;
+  --jl-control-hover-brightness: 1.08;
+  --jl-font-size-xs: 11px;
+  --jl-font-size-sm: 13px;
+  --jl-font-size-card-title: 17px;
+  --jl-badge-padding-inline: 9px;
+  --jl-radius-pill: 999px;
+  --jl-card-padding: 18px;
+  --jl-card-background: linear-gradient(155deg, rgb(255 255 255 / .017), transparent);
+  --jl-card-visual-height: 98px;
+  --jl-card-title-tracking: -.025em;
+  --jl-card-description-leading: 1.55;
+  --jl-card-tag-gap: 6px;
+  --jl-font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --jl-font-mono: 'Geist Mono Variable', ui-monospace, monospace;
+  --jl-content-max: 1180px;
+  --jl-z-skip-link: 10;
+  --jl-focus-ring: 0 0 0 3px rgb(var(--jl-accent-rgb) / .3);
+}
+[data-jl-theme='violet'] { --jl-accent: var(--jl-violet); --jl-accent-rgb: 152, 125, 187; }

@@ -1,0 +1,20 @@
+/* Generated from tokens.json. Run npm run build to refresh. */
+:root {
+  --jl-duration-fast: 120ms;
+  --jl-duration-base: 220ms;
+  --jl-duration-slow: 360ms;
+  --jl-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --jl-ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --jl-hover-lift: -2px;
+  --jl-entrance-distance: 8px;
+  --jl-press-scale: 0.98;
+  --jl-indicator-thickness: 2px;
+}
+.jl-interactive { transition: transform var(--jl-duration-base) var(--jl-ease-out), border-color var(--jl-duration-base) ease, background var(--jl-duration-base) ease; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .jl-interactive:not(:disabled):hover { transform: translateY(var(--jl-hover-lift)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0ms !important; transition-duration: 0ms !important; scroll-behavior: auto !important; }
+  .jl-motion-content, .jl-motion-control { transform: none !important; }
+}

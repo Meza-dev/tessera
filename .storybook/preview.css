@@ -1,0 +1,5 @@
+body{font-family:var(--jl-font-sans);color:var(--jl-text);background:var(--jl-bg)}
+.motion-example{display:flex;flex-direction:column;align-items:flex-start;gap:var(--jl-space-6);padding:var(--jl-space-6)}
+.motion-example nav{display:flex;gap:var(--jl-space-4)}
+.motion-example nav button{position:relative;padding:var(--jl-space-3);background:transparent;border:0;color:var(--jl-text);font:inherit;cursor:pointer}
+.motion-example nav button:focus-visible{outline:2px solid var(--jl-accent);outline-offset:2px}
