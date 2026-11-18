@@ -1,14 +1,14 @@
 # Architecture Decision Record 001 — Shared Identity, Independent Projects
 
-**Decision:** every meaningful experiment or product gets its own repository. The Design System is a separate repository with internal npm workspaces for its own packages. The portfolio is a second repository.
+**Decision:** every meaningful experiment or product gets its own repository. TESSERA is the shared Design System repository with internal npm workspaces for its own packages. Jonas Lab is the portfolio repository and consumes TESSERA independently.
 
 ### Packages
-- `@jonas-lab/tokens`: framework-neutral semantic CSS and a self-hosted Latin variable font entry. Fontsource packages are runtime dependencies so font URLs resolve after packaging.
-- `@jonas-lab/motion`: framework-neutral JSON timing/easing/distance tokens and generated CSS. `npm run build` regenerates the CSS, and tests check its parity with the authoritative JSON.
-- `@jonas-lab/ui`: React components, Motion for React primitives and shared styles. Motion remains an external runtime dependency in emitted JavaScript.
+- `@tessera/tokens`: framework-neutral semantic CSS and a self-hosted Latin variable font entry. Fontsource packages are runtime dependencies so font URLs resolve after packaging.
+- `@tessera/motion`: framework-neutral JSON timing/easing/distance tokens and generated CSS. `npm run build` regenerates the CSS, and tests check its parity with the authoritative JSON.
+- `@tessera/ui`: React components, Motion for React primitives and shared styles. Motion remains an external runtime dependency in emitted JavaScript.
 
 ### Local development
-The portfolio has relative `file:` dependencies on the sibling Design System folder. Run `npm install && npm run build` in the Design System before installing the portfolio. `npm install` may copy or link local packages; when changes do not appear in the website, rebuild and reinstall its dependencies.
+The portfolio has relative `file:../tessera/packages/*` dependencies on the sibling TESSERA folder. Run `npm ci` and `npm run build` in `tessera` before installing the portfolio. npm may copy or link local packages. When changes do not appear in the website, rebuild TESSERA and reinstall the website dependencies.
 
 Lockfiles are supplied for both projects. Use `npm ci` for subsequent clean installs, building the Design System before installing the website. The website's React Vite plugin deduplicates `react` and `react-dom` so linked UI imports share its renderer runtime. A Vite resolution regression test checks this boundary.
 
@@ -26,4 +26,7 @@ The portfolio uses `BrowserRouter` for its pages and experiment IDs, with catego
 Replace local `file:` dependencies with versioned registry dependencies after package publishing. Keep experiments separately deployed as necessary. Link them via stable URLs, and later evaluate route proxy vs iframe vs direct embed based on isolation, security, routing and performance.
 
 ### Constraints
-No enforced single framework. Do not import `@jonas-lab/ui` from non-React frontends. CI, release automation, translation tooling, Storybook screenshots and E2E tests are subsequent tasks.
+No enforced single framework. Do not import `@tessera/ui` from non-React frontends. CI, release automation, translation tooling, Storybook screenshots and E2E tests are subsequent tasks.
+
+### Identity compatibility
+The package migration is documented in the [root README](../README.md#package-migration). TESSERA uses the `@tessera` package scope and `tessera-workspace` workspace name. Component APIs and framework-neutral visual/motion values preserve version 0.2 behavior. Existing `--jl-*` tokens, `.jl-*` classes and `data-jl-theme` remain stable compatibility interfaces for consumers.

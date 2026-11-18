@@ -1,15 +1,15 @@
-# Jonas Design System
+# TESSERA
 
-Shared visual identity for Jonas Lab and independent experiments. Version 0.2 provides self-hosted Geist fonts, semantic design tokens, reusable React components, accessible motion primitives and Storybook examples.
+TESSERA is the shared design system for Jonas Lab and independent experiments. Version 0.2 provides self-hosted Geist fonts, semantic design tokens, reusable React components, accessible motion primitives and Storybook examples. Jonas Lab is the portfolio and laboratory website that consumes these packages.
 
 ## Local setup
 
 Requires Node.js 22.12+ and npm, with access to both private GitHub repositories. Clone the projects into adjacent directories so the website's local package dependencies resolve.
 
 ```bash
-git clone https://github.com/Meza-dev/jonas-design-system.git
+git clone https://github.com/Meza-dev/tessera.git
 git clone https://github.com/Meza-dev/jonas-lab.git
-cd jonas-design-system
+cd tessera
 npm ci
 npm run build
 npm run typecheck
@@ -23,11 +23,25 @@ Start the component workshop with `npm run storybook` and open its reported loca
 
 | Package | Responsibility |
 |---|---|
-| `@jonas-lab/tokens` | Framework-neutral theme CSS and local variable Geist fonts through `fonts.css`. |
-| `@jonas-lab/motion` | Framework-neutral JSON motion values and generated CSS. |
-| `@jonas-lab/ui` | Typed React components, link composition and reduced-motion-aware Motion for React primitives. |
+| `@tessera/tokens` | Framework-neutral theme CSS and local variable Geist fonts through `fonts.css`. |
+| `@tessera/motion` | Framework-neutral JSON motion values and generated CSS. |
+| `@tessera/ui` | Typed React components, link composition and reduced-motion-aware Motion for React primitives. |
 
 `npm run build` regenerates motion CSS and emits UI JavaScript and declarations. Keep motion JSON and generated CSS together. React components consume the same values. The website uses sibling `file:` dependencies, and each repository keeps its own lockfile and Git history.
+
+## Package migration
+
+The TESSERA naming migration keeps the foundation at version 0.2.0. Update package dependencies and imports using this mapping.
+
+| Previous identity | TESSERA identity |
+|---|---|
+| Repository/folder `jonas-design-system` | `tessera` |
+| Workspace `jonas-design-system-workspace` | `tessera-workspace` |
+| `@jonas-lab/tokens` | `@tessera/tokens` |
+| `@jonas-lab/motion` | `@tessera/motion` |
+| `@jonas-lab/ui` | `@tessera/ui` |
+
+Clone the folders adjacent as shown above, then reinstall dependencies and rebuild TESSERA before installing the website. Public React component APIs, native button/link behavior, font exports and reduced-motion contracts retain their version 0.2 behavior. CSS custom properties `--jl-*`, classes `.jl-*` and the `data-jl-theme` attribute remain compatibility interfaces.
 
 ## Current limits
 

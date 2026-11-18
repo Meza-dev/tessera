@@ -1,11 +1,13 @@
-# Jonas Lab — Product & Design Specification
+# TESSERA — Product & Design Specification
 Version 0.2 | Established design direction | English-first
 
 ## Vision
 An independent creative developer lab and portfolio for interactive experiments, software projects, AI exploration, technical learning and developer tools. More interactive and personal than a conventional project gallery. All showcase examples are fictional during initial implementation.
 
+TESSERA provides the shared visual and interaction foundation. Jonas Lab is the portfolio and laboratory website, retaining the product identity and design direction below.
+
 ## Brand
-**Name:** Jonas Lab (approved). **Visual direction:** FORM / LAB (approved). **Tagline:** Build. Experiment. Explore. (provisional).
+**Design System:** TESSERA. **Website:** Jonas Lab (approved). **Visual direction:** FORM / LAB (approved). **Website tagline:** Build. Experiment. Explore. (provisional).
 
 ## Design
 Inspired by Vercel Geist's clarity, but not a copy of its interface. Dark graphite foundation, refined white text, subtle borders, generous whitespace, expressive typography and restrained generative artwork. Cyan and violet accents with **reduced saturation**. Precise values are **provisional**.

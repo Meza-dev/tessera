@@ -14,6 +14,17 @@ const server = await createServer({
 });
 after(() => server.close());
 
+test('TESSERA packages resolve their published entry points', async () => {
+  const ui = await import('@tessera/ui');
+  assert.equal(typeof ui.Button, 'function');
+  assert.equal(typeof ui.MotionProvider, 'function');
+  const { default: motionTokens } = await import('@tessera/motion/tokens.json', { with: { type: 'json' } });
+  assert.equal(typeof motionTokens.durationMs.fast, 'number');
+  for (const entry of ['@tessera/tokens/theme.css', '@tessera/tokens/fonts.css', '@tessera/motion/motion.css']) {
+    assert.ok((await readFile(new URL(import.meta.resolve(entry)), 'utf8')).length > 0, entry);
+  }
+});
+
 test('preview React default imports receive browser CommonJS interop', async () => {
   const { config: storybookConfig } = await loadConfigFromFile(
     { command: 'serve', mode: 'development' }, '.storybook/main.ts',

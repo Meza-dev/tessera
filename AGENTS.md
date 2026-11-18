@@ -1,4 +1,4 @@
-# Agent Rules — Jonas Design System
+# Agent Rules — TESSERA
 
 1. Read `docs/PRODUCT_DESIGN_SPEC.md` and `docs/ARCHITECTURE.md` before changing UI.
 2. Keep all colors, spacing, and timing values centralized in tokens/motion. Do not hardcode new visual values inside components unless a documented exception is necessary.
