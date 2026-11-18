@@ -10,3 +10,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 export const Primary: Story = {};
 export const Secondary: Story = { args: { variant: 'secondary' } };
+export const ExternalDestination: Story = {
+  args: { href: 'https://example.com/project', children: 'Read the project notes ↗' },
+};

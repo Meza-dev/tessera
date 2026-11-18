@@ -1,10 +1,10 @@
 # TESSERA — Product & Design Specification
-Version 0.2 | Established design direction | English-first
+Version 0.3 ecosystem | Established design direction | English-first
 
 ## Vision
 An independent creative developer lab and portfolio for interactive experiments, software projects, AI exploration, technical learning and developer tools. More interactive and personal than a conventional project gallery. All showcase examples are fictional during initial implementation.
 
-TESSERA provides the shared visual and interaction foundation. Jonas Lab is the portfolio and laboratory website, retaining the product identity and design direction below.
+TESSERA provides the shared visual and interaction foundation. Personal Website presents Jonas Meza and his project write-ups. Jonas Lab hosts interactive previews. Both use the visual direction below.
 
 ## Brand
 **Design System:** TESSERA. **Website:** Jonas Lab (approved). **Visual direction:** FORM / LAB (approved). **Website tagline:** Build. Experiment. Explore. (provisional).
@@ -24,7 +24,7 @@ Purposeful, not decorative. Reusable hover/focus/press affordances, quick contro
 Motion tokens are authored in framework-neutral JSON and generate the CSS values. React primitives consume the same tokens. Feedback uses a 120 ms ease-out, navigation settles within 220 ms, and visible content enters over 360 ms with an 8 px offset. Reduced-motion mode and an unknown initial preference keep transforms and layout feedback disabled. Content remains visible before JavaScript effects run.
 
 ## Product sections
-Home, Experiments, Projects and About. Optional future Notes. An experiment should be directly playable when technically feasible; a project may instead link to a demonstration/repository.
+Personal Website owns Home, Projects and About. Jonas Lab owns the experiment catalog and preview routes. An experiment should be directly playable when technically feasible; a project may instead link to a demonstration/repository.
 
 ## Global rules
 Shared visual identity across repositories, without forcing React onto every project. English is default; prepare English/Spanish localization keys. Responsive and accessible layouts. Avoid overbright glow, excessive 3D, heavy gradients and large empty decorative effects.
