@@ -1,5 +1,5 @@
-# @tessera/react
+# @tessera-system/tessera
 
 ## 0.1.0
 
-- First public release candidate for typed React 19 components, reduced-motion primitives and shared component styles.
+- First release candidate with typed React 19 components, motion, semantic CSS and self-hosted Geist Sans and Mono in one package.

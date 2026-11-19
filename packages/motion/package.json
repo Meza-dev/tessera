@@ -1,6 +1,7 @@
 {
   "name": "@tessera/motion",
   "version": "0.1.0",
+  "private": true,
   "description": "Framework-neutral TESSERA motion tokens and interactive CSS.",
   "license": "MIT",
   "type": "module",
@@ -8,10 +9,6 @@
     "type": "git",
     "url": "git+https://github.com/Meza-dev/tessera.git",
     "directory": "packages/motion"
-  },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
   },
   "exports": {
     "./motion.css": "./motion.css",
@@ -23,7 +20,6 @@
   ],
   "sideEffects": ["*.css"],
   "scripts": {
-    "build": "node generate.mjs && node ../../scripts/stage-package.mjs",
-    "prepack": "npm run build"
+    "build": "node generate.mjs"
   }
 }

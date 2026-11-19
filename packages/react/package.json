@@ -1,7 +1,7 @@
 {
-  "name": "@tessera/react",
+  "name": "@tessera-system/tessera",
   "version": "0.1.0",
-  "description": "Accessible React components and motion primitives for TESSERA.",
+  "description": "TESSERA design tokens, Geist fonts, motion styles and React components.",
   "license": "MIT",
   "type": "module",
   "repository": {
@@ -15,26 +15,35 @@
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "imports": {
+    "#motion-tokens": "./dist/tokens.json"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./styles.css": "./dist/styles.css"
+    "./styles.css": "./dist/styles.css",
+    "./theme.css": "./dist/theme.css",
+    "./fonts.css": "./dist/fonts.css",
+    "./motion.css": "./dist/motion.css",
+    "./tokens.json": "./dist/tokens.json"
   },
   "files": ["dist"],
   "sideEffects": ["**/*.css"],
   "scripts": {
-    "build": "tsc -p tsconfig.build.json && node ../../scripts/stage-package.mjs --react-styles",
+    "build": "tsc -p tsconfig.build.json && node ../../scripts/stage-package.mjs",
     "typecheck": "tsc --noEmit -p tsconfig.build.json",
     "prepack": "npm run build"
   },
   "peerDependencies": {
+    "motion": "^14.14.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
-  "dependencies": {
-    "@tessera/motion": "^0.1.0",
-    "motion": "^14.14.0"
+  "peerDependenciesMeta": {
+    "motion": { "optional": true },
+    "react": { "optional": true },
+    "react-dom": { "optional": true }
   }
 }

@@ -3,7 +3,7 @@ import { after, test } from 'node:test';
 import { createServer, loadConfigFromFile } from 'vite';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 
 const server = await createServer({
@@ -14,27 +14,42 @@ const server = await createServer({
 });
 after(() => server.close());
 
-test('TESSERA packages resolve their published entry points', async () => {
-  const ui = await import('@tessera/react');
-  assert.equal(typeof ui.Button, 'function');
-  assert.equal(typeof ui.MotionProvider, 'function');
-  const { default: motionTokens } = await import('@tessera/motion/tokens.json', { with: { type: 'json' } });
+test('the public TESSERA package resolves its React, motion and standalone CSS exports', async () => {
+  const ui = await import('@tessera-system/tessera');
+  const button = createElement(ui.MotionProvider, { reducedMotion: 'always' }, createElement(ui.Button, null, 'Preview'));
+  assert.match(renderToStaticMarkup(button), /type="button"[^>]*>Preview<\/button>/);
+  const { default: motionTokens } = await import('@tessera-system/tessera/tokens.json', { with: { type: 'json' } });
   assert.equal(typeof motionTokens.durationMs.fast, 'number');
-  for (const entry of ['@tessera/tokens/theme.css', '@tessera/tokens/fonts.css', '@tessera/motion/motion.css', '@tessera/react/styles.css']) {
-    assert.ok((await readFile(new URL(import.meta.resolve(entry)), 'utf8')).length > 0, entry);
+  for (const entry of ['theme.css', 'fonts.css', 'motion.css', 'styles.css']) {
+    assert.ok((await readFile(new URL(import.meta.resolve(`@tessera-system/tessera/${entry}`)), 'utf8')).length > 0, entry);
+  }
+  const fontsUrl = new URL(import.meta.resolve('@tessera-system/tessera/fonts.css'));
+  const fontsCss = await readFile(fontsUrl, 'utf8');
+  const fontPaths = [...fontsCss.matchAll(/url\('([^']+)'\)/g)].map(match => match[1]);
+  assert.equal(fontPaths.length, 2);
+  for (const fontPath of fontPaths) {
+    assert.match(fontPath, /^\.\/fonts\/.*\.woff2$/);
+    const font = await readFile(new URL(fontPath, fontsUrl));
+    assert.equal(font.subarray(0, 4).toString(), 'wOF2');
   }
 });
 
-test('public workspaces have public metadata and no local dependencies', async () => {
-  for (const name of ['tokens', 'motion', 'react']) {
-    const manifest = JSON.parse(await readFile(`packages/${name}/package.json`, 'utf8'));
-    assert.equal(manifest.name, `@tessera/${name}`);
-    assert.match(manifest.version, /^\d+\.\d+\.\d+$/);
-    assert.notEqual(manifest.private, true);
-    assert.equal(manifest.publishConfig.access, 'public');
-    assert.equal(manifest.license, 'MIT');
-    const dependencies = { ...manifest.dependencies, ...manifest.optionalDependencies, ...manifest.peerDependencies };
-    assert.ok(Object.values(dependencies).every(range => !/^(file|link|workspace):/.test(range)));
+test('only the consolidated TESSERA workspace is public and CSS installs have no runtime dependencies', async () => {
+  const directories = await readdir('packages', { withFileTypes: true });
+  const manifests = await Promise.all(directories.filter(entry => entry.isDirectory()).map(async entry =>
+    JSON.parse(await readFile(`packages/${entry.name}/package.json`, 'utf8')),
+  ));
+  const publicManifests = manifests.filter(manifest => manifest.private !== true);
+  assert.deepEqual(publicManifests.map(manifest => manifest.name), ['@tessera-system/tessera']);
+  const [manifest] = publicManifests;
+  assert.match(manifest.version, /^\d+\.\d+\.\d+$/);
+  assert.equal(manifest.publishConfig.access, 'public');
+  assert.equal(manifest.license, 'MIT');
+  assert.deepEqual({ ...manifest.dependencies, ...manifest.optionalDependencies }, {});
+  assert.deepEqual(Object.keys(manifest.peerDependencies).sort(), ['motion', 'react', 'react-dom']);
+  for (const [peer, range] of Object.entries(manifest.peerDependencies)) {
+    assert.equal(manifest.peerDependenciesMeta[peer].optional, true);
+    assert.doesNotMatch(range, /^(file|link|workspace):/);
   }
 });
 

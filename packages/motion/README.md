@@ -1,3 +1,3 @@
-# @tessera/motion
+# TESSERA motion sources
 
-Framework-neutral motion tokens in `@tessera/motion/tokens.json` and generated CSS in `@tessera/motion/motion.css`. Import the stylesheet to use TESSERA timing, easing and the `.jl-interactive` class with support for reduced motion.
+This private workspace maintains the framework-neutral motion values in `tokens.json` and generates `motion.css`. The public `@tessera-system/tessera` package distributes both files.
