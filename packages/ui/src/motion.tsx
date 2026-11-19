@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useId, useRef, type DOMAttributes, type ReactNode, type SyntheticEvent } from 'react';
 import { LayoutGroup, MotionConfig, motion, useAnimate, useReducedMotion } from 'motion/react';
-import tokens from '@tessera/motion/tokens.json' with { type: 'json' };
+import tokens from '#motion-tokens' with { type: 'json' };
 
 type MotionPreference = 'user' | 'always';
 const MotionPreferenceContext = createContext<MotionPreference>('user');

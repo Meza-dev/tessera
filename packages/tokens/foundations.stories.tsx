@@ -29,7 +29,7 @@ const meta = {
   title: 'Foundations/Design tokens',
   component: Foundations,
   parameters: {
-    docs: { description: { component: 'CSS custom properties from @tessera/tokens/theme.css. Import fonts.css for Geist Sans and Geist Mono.' } },
+    docs: { description: { component: 'CSS custom properties from @tessera-system/tessera/theme.css. Import fonts.css for Geist Sans and Geist Mono.' } },
   },
 } satisfies Meta<typeof Foundations>;
 export default meta;

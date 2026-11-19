@@ -13,28 +13,21 @@ npm run storybook
 
 Open the local address printed in your terminal. Start with **Design tokens** to compare themes, then try **Button** and **Shared primitives** to see component states and motion.
 
-## Packages
-
-| Package | Use it for |
-|---|---|
-| `@tessera/tokens` | Colors, typography, spacing and shape in `theme.css`, plus Geist Sans and Geist Mono in `fonts.css`. Works with any framework. |
-| `@tessera/motion` | Transition values in `tokens.json` and CSS interactions in `motion.css`. Works with any framework. |
-| `@tessera/react` | `Button`, `ActionLink`, `Badge`, `ProjectCard`, `MotionProvider`, `ContentTransition`, `ActiveIndicator`, TypeScript types and `styles.css`. |
-
 ## Install from npm
 
-The first npm release, `0.1.0`, is pending. Once it's available, use these commands in a project with React and React DOM 19 and ESM tooling.
+TESSERA is available on npm as [`@tessera-system/tessera`](https://www.npmjs.com/package/@tessera-system/tessera). Install version `0.1.0` with the command below.
 
 ```sh
-npm install @tessera/tokens@0.1.0 @tessera/motion@0.1.0 @tessera/react@0.1.0
+npm install @tessera-system/tessera@0.1.0
 ```
 
+### React
+
+Use React and React DOM 19, Motion 14.14 or newer on the 14.x line, and ESM tooling. Install any missing peers with `npm install react@^19 react-dom@^19 motion@^14.14.0`. For Node.js SSR, use Node.js 22.12 or newer.
+
 ```tsx
-import '@tessera/tokens/fonts.css';
-import '@tessera/tokens/theme.css';
-import '@tessera/motion/motion.css';
-import '@tessera/react/styles.css';
-import { ActionLink, Button, MotionProvider } from '@tessera/react';
+import '@tessera-system/tessera/styles.css';
+import { ActionLink, Button, MotionProvider } from '@tessera-system/tessera';
 
 export function App() {
   return (
@@ -50,12 +43,12 @@ Apply `font-family: var(--jl-font-sans)` to your page and use `var(--jl-font-mon
 
 ### CSS outside React
 
-Install `@tessera/tokens` and optionally `@tessera/motion`. Import the CSS from any bundler that resolves npm packages and font URLs. `theme.css` and `motion.css` can also be copied and served as CSS assets.
+The CSS exports work with any framework and install without the React peers. Use these imports with an npm-aware bundler. To host CSS as static assets, serve the stylesheets with their relative `fonts/` directory intact.
 
 ```css
-@import '@tessera/tokens/fonts.css';
-@import '@tessera/tokens/theme.css';
-@import '@tessera/motion/motion.css';
+@import '@tessera-system/tessera/fonts.css';
+@import '@tessera-system/tessera/theme.css';
+@import '@tessera-system/tessera/motion.css';
 
 body {
   background: var(--jl-bg);
@@ -63,6 +56,13 @@ body {
   font-family: var(--jl-font-sans);
 }
 ```
+
+| Export | Use it for |
+|---|---|
+| `@tessera-system/tessera` | Typed React controls, cards and motion primitives. |
+| `styles.css` | A single import for typography, theme, motion and component styles. |
+| `theme.css` and `fonts.css` | Color, spacing and shape tokens, plus self-hosted Geist Sans and Geist Mono. |
+| `motion.css` and `tokens.json` | CSS interactions and framework-neutral timing and easing values. |
 
 ## Develop and contribute
 
