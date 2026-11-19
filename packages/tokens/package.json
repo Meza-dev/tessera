@@ -1,8 +1,18 @@
 {
   "name": "@tessera/tokens",
-  "version": "0.2.0",
-  "private": true,
+  "version": "0.1.0",
+  "description": "Framework-neutral TESSERA design tokens, themes and Geist typography.",
+  "license": "MIT",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Meza-dev/tessera.git",
+    "directory": "packages/tokens"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "exports": {
     "./theme.css": "./theme.css",
     "./fonts.css": "./fonts.css"
@@ -11,6 +21,11 @@
     "theme.css",
     "fonts.css"
   ],
+  "sideEffects": ["*.css"],
+  "scripts": {
+    "build": "node ../../scripts/stage-package.mjs",
+    "prepack": "npm run build"
+  },
   "dependencies": {
     "@fontsource-variable/geist": "5.3.0",
     "@fontsource-variable/geist-mono": "5.3.0"

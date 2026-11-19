@@ -1,4 +1,5 @@
 import type { HTMLAttributes } from 'react';
-export function Badge({className='',...props}: HTMLAttributes<HTMLSpanElement>) {
+export type BadgeProps = HTMLAttributes<HTMLSpanElement>;
+export function Badge({className='',...props}: BadgeProps) {
  return <span {...props} className={`jl-badge ${className}`.trim()} />;
 }

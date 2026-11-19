@@ -2,18 +2,27 @@
   "name": "tessera-workspace",
   "private": true,
   "type": "module",
-  "version": "0.2.0",
+  "version": "0.1.0",
+  "license": "MIT",
+  "engines": {
+    "node": "^22.12 || ^24 || >=26",
+    "npm": ">=10.9.0"
+  },
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "build": "npm run build --workspace @tessera/motion && npm run build --workspace @tessera/ui",
+    "build": "npm run build --workspaces --if-present",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "typecheck": "npm run typecheck --workspace @tessera/ui && tsc -p tsconfig.json",
-    "test": "node --test tests/*.test.mjs"
+    "typecheck": "npm run typecheck --workspaces --if-present && tsc -p tsconfig.json",
+    "test": "node --test tests/*.test.mjs",
+    "changeset": "changeset",
+    "version-packages": "changeset version && npm install --package-lock-only --ignore-scripts"
   },
   "devDependencies": {
+    "@changesets/cli": "^3.0.3",
+    "@storybook/addon-docs": "10.6.7",
     "@storybook/react-vite": "10.6.7",
     "storybook": "10.6.7",
     "vite": "^7.1.0",

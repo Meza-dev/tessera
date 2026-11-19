@@ -3,3 +3,27 @@ body{font-family:var(--jl-font-sans);color:var(--jl-text);background:var(--jl-bg
 .motion-example nav{display:flex;gap:var(--jl-space-4)}
 .motion-example nav button{position:relative;padding:var(--jl-space-3);background:transparent;border:0;color:var(--jl-text);font:inherit;cursor:pointer}
 .motion-example nav button:focus-visible{outline:2px solid var(--jl-accent);outline-offset:2px}
+
+.token-example {
+  background: var(--jl-bg);
+  color: var(--jl-text);
+  padding: var(--jl-space-6);
+}
+.token-example code { font-family: var(--jl-font-mono); }
+.token-example__palette,.token-example__spacing {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--jl-space-4);
+  padding: 0;
+  list-style: none;
+}
+.token-example__palette li,.token-example__spacing li { display: grid; gap: var(--jl-space-2); }
+.token-example__palette span {
+  block-size: var(--jl-space-8);
+  border: 1px solid var(--jl-border);
+  border-radius: var(--jl-radius-sm);
+}
+.token-example__spacing span {
+  block-size: var(--jl-space-1);
+  background: var(--jl-accent);
+}

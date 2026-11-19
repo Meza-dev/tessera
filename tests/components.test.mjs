@@ -15,13 +15,26 @@ const server = await createServer({
 after(() => server.close());
 
 test('TESSERA packages resolve their published entry points', async () => {
-  const ui = await import('@tessera/ui');
+  const ui = await import('@tessera/react');
   assert.equal(typeof ui.Button, 'function');
   assert.equal(typeof ui.MotionProvider, 'function');
   const { default: motionTokens } = await import('@tessera/motion/tokens.json', { with: { type: 'json' } });
   assert.equal(typeof motionTokens.durationMs.fast, 'number');
-  for (const entry of ['@tessera/tokens/theme.css', '@tessera/tokens/fonts.css', '@tessera/motion/motion.css']) {
+  for (const entry of ['@tessera/tokens/theme.css', '@tessera/tokens/fonts.css', '@tessera/motion/motion.css', '@tessera/react/styles.css']) {
     assert.ok((await readFile(new URL(import.meta.resolve(entry)), 'utf8')).length > 0, entry);
+  }
+});
+
+test('public workspaces have public metadata and no local dependencies', async () => {
+  for (const name of ['tokens', 'motion', 'react']) {
+    const manifest = JSON.parse(await readFile(`packages/${name}/package.json`, 'utf8'));
+    assert.equal(manifest.name, `@tessera/${name}`);
+    assert.match(manifest.version, /^\d+\.\d+\.\d+$/);
+    assert.notEqual(manifest.private, true);
+    assert.equal(manifest.publishConfig.access, 'public');
+    assert.equal(manifest.license, 'MIT');
+    const dependencies = { ...manifest.dependencies, ...manifest.optionalDependencies, ...manifest.peerDependencies };
+    assert.ok(Object.values(dependencies).every(range => !/^(file|link|workspace):/.test(range)));
   }
 });
 
@@ -98,6 +111,15 @@ test('ProjectCard composes a custom link without nesting anchors', async () => {
   assert.equal((html.match(/<a\s/g) ?? []).length, 1);
   assert.match(html, /data-router-link="true"/);
   assert.match(html, /href="\/experiments\/example"/);
+});
+
+test('a static ProjectCard does not advertise navigation', async () => {
+  const { ProjectCard } = await server.ssrLoadModule('/packages/ui/src/project-card.tsx');
+  const html = renderToStaticMarkup(createElement(ProjectCard, {
+    title: 'Static card', description: 'An example without a destination', tags: [],
+  }));
+  assert.match(html, /<article\b/);
+  assert.doesNotMatch(html, /<a\b|jl-card__arrow/);
 });
 
 test('editorial cards keep a single accessible project link without rendering unrequested badges', async () => {

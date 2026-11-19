@@ -1,22 +1,19 @@
 # TESSERA — Product & Design Specification
-Version 0.3 ecosystem | Established design direction | English-first
+Established design direction | English-first
 
 ## Vision
-An independent creative developer lab and portfolio for interactive experiments, software projects, AI exploration, technical learning and developer tools. More interactive and personal than a conventional project gallery. All showcase examples are fictional during initial implementation.
-
-TESSERA provides the shared visual and interaction foundation. Personal Website presents Jonas Meza and his project write-ups. Jonas Lab hosts interactive previews. Both use the visual direction below.
+TESSERA provides a shared visual and interaction foundation for portfolios, interactive experiments, and developer tools. Its design tokens and motion CSS work across frameworks. Its React components provide reusable controls, cards, and transitions.
 
 ## Brand
-**Design System:** TESSERA. **Website:** Jonas Lab (approved). **Visual direction:** FORM / LAB (approved). **Website tagline:** Build. Experiment. Explore. (provisional).
+TESSERA is the design system name. The approved visual direction is FORM / LAB.
 
 ## Design
 Inspired by Vercel Geist's clarity, but not a copy of its interface. Dark graphite foundation, refined white text, subtle borders, generous whitespace, expressive typography and restrained generative artwork. Cyan and violet accents with **reduced saturation**. Precise values are **provisional**.
 
-The dark palette remains the default for Jonas Lab. Personal Website opts in to
+TESSERA defaults to the dark palette. Applications can opt in to
 `data-jl-theme="editorial"` for warm cream surfaces, graphite text and terracotta
 accents. Shared controls and cards use semantic tokens, including the optional
-editorial card treatment in warm, sage or plum. Artwork specific to the portfolio
-stays in the portfolio application.
+editorial card treatment in warm, sage or plum. Applications supply their own artwork.
 
 ### Initial tokens
 - Background `#0C0D10`, surface `#15171B`, raised surface `#1D2026`, border `#303238`.
@@ -29,12 +26,12 @@ Purposeful, not decorative. Reusable hover/focus/press affordances, quick contro
 
 Motion tokens are authored in framework-neutral JSON and generate the CSS values. React primitives consume the same tokens. Feedback uses a 120 ms ease-out, navigation settles within 220 ms, and visible content enters over 360 ms with an 8 px offset. Reduced-motion mode and an unknown initial preference keep transforms and layout feedback disabled. Content remains visible before JavaScript effects run.
 
-## Product sections
-Personal Website owns Home, Projects and About. Jonas Lab owns the experiment catalog and preview routes. An experiment should be directly playable when technically feasible; a project may instead link to a demonstration/repository.
+## Application boundaries
+Applications own their content, catalogs and routes. TESSERA supplies the visual and interaction primitives those applications use.
 
 ## Global rules
 Shared visual identity across repositories, without forcing React onto every project. English is default; prepare English/Spanish localization keys. Responsive and accessible layouts. Avoid overbright glow, excessive 3D, heavy gradients and large empty decorative effects.
 
 ## Status
 Approved: brand, English-first, independent repositories, dark minimal visual direction, restrained cyan/violet, motion and reusable design system.
-Provisional: actual accent hex values, logo details, tagline, animation curves, packaging/deployment strategy.
+Provisional: actual accent hex values, logo details and animation curves.

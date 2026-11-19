@@ -4,3 +4,5 @@ storybook-static/
 .env
 .DS_Store
 *.tsbuildinfo
+*.tgz
+/packages/*/LICENSE

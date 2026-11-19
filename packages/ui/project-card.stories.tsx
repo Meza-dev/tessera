@@ -9,6 +9,9 @@ const meta = {
     description: 'A fictional project showing the shared card layout.',
     tags: ['Concept', 'Interactive'],
   },
+  parameters: {
+    docs: { description: { component: 'Use href to make the whole card a link. Supply renderLink for router integration while retaining a single anchor.' } },
+  },
 } satisfies Meta<typeof ProjectCard>;
 export default meta;
 
@@ -19,3 +22,5 @@ export const Editorial: Story = {
   decorators: [Story => <div data-jl-theme="editorial" style={{ maxWidth: 440 }}><Story /></div>],
   args: { variant: 'editorial', tone: 'sage', href: '#example-experiment', visual: '◇' },
 };
+export const EditorialWarm: Story = { ...Editorial, args: { ...Editorial.args, tone: 'warm' } };
+export const EditorialPlum: Story = { ...Editorial, args: { ...Editorial.args, tone: 'plum' } };

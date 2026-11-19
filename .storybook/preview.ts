@@ -5,6 +5,7 @@ import '../packages/motion/motion.css';
 import '../packages/ui/styles.css';
 import './preview.css';
 const preview: Preview = {
+  tags: ['autodocs'],
   parameters: {
     backgrounds: { options: { dark: { name: 'Dark', value: 'var(--jl-bg)' } } },
   },

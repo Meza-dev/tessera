@@ -11,6 +11,6 @@
   },
   "include": [
     ".storybook",
-    "packages/ui/**/*.tsx"
+    "packages/**/*.tsx"
   ]
 }

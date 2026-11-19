@@ -21,7 +21,10 @@ function MotionExample({ reducedMotion = 'user' }: { reducedMotion?: 'user' | 'a
 const meta = {
   title: 'Motion/Shared primitives',
   component: MotionExample,
-  parameters: { layout: 'padded' },
+  parameters: {
+    layout: 'padded',
+    docs: { description: { component: 'MotionProvider respects the system preference by default. Set reducedMotion to always to disable shared transform, layout and gesture effects.' } },
+  },
 } satisfies Meta<typeof MotionExample>;
 export default meta;
 
