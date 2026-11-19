@@ -12,6 +12,12 @@ TESSERA provides the shared visual and interaction foundation. Personal Website 
 ## Design
 Inspired by Vercel Geist's clarity, but not a copy of its interface. Dark graphite foundation, refined white text, subtle borders, generous whitespace, expressive typography and restrained generative artwork. Cyan and violet accents with **reduced saturation**. Precise values are **provisional**.
 
+The dark palette remains the default for Jonas Lab. Personal Website opts in to
+`data-jl-theme="editorial"` for warm cream surfaces, graphite text and terracotta
+accents. Shared controls and cards use semantic tokens, including the optional
+editorial card treatment in warm, sage or plum. Artwork specific to the portfolio
+stays in the portfolio application.
+
 ### Initial tokens
 - Background `#0C0D10`, surface `#15171B`, raised surface `#1D2026`, border `#303238`.
 - Text `#F5F5F7`, secondary `#A1A4AD`.

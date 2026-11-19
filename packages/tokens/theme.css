@@ -1,4 +1,4 @@
-/* Jonas Lab v0.1 — provisional brand values. Adjust here, not in components. */
+/* Dark remains the default. Add opt-in palettes without changing existing consumers. */
 :root {
   color-scheme: dark;
   --jl-bg: #0c0d10;
@@ -42,3 +42,45 @@
   --jl-focus-ring: 0 0 0 3px rgb(var(--jl-accent-rgb) / .3);
 }
 [data-jl-theme='violet'] { --jl-accent: var(--jl-violet); --jl-accent-rgb: 152, 125, 187; }
+
+[data-jl-theme='editorial'] {
+  color-scheme: light;
+  --jl-bg: #f8ede7;
+  --jl-surface: #fcf6f0;
+  --jl-surface-raised: #efe1d7;
+  --jl-border: #d8c9c0;
+  --jl-text: #26272d;
+  --jl-text-muted: #61575a;
+  --jl-cyan: #256b6d;
+  --jl-violet: #685b84;
+  --jl-accent: #a94221;
+  --jl-accent-emphasis: #bf512b;
+  --jl-accent-foreground: #fff8f1;
+  --jl-accent-rgb: 169, 66, 33;
+  --jl-action-bg: var(--jl-text);
+  --jl-action-foreground: var(--jl-accent-foreground);
+  --jl-font-size-xs: 12px;
+  --jl-font-size-sm: 15px;
+  --jl-font-size-base: 17px;
+  --jl-font-size-lead: clamp(17px, 1.45vw, 24px);
+  --jl-font-size-display: clamp(46px, 4.05vw, 68px);
+  --jl-content-max: 1740px;
+  --jl-focus-ring: 0 0 0 2px var(--jl-bg), 0 0 0 4px var(--jl-accent);
+}
+
+:root {
+  --jl-editorial-card-ink: #fffaf5;
+  --jl-editorial-card-muted: #f0e5e0;
+  --jl-editorial-card-warm-base: #3d3334;
+  --jl-editorial-card-warm-light: #a4563c;
+  --jl-editorial-card-warm-edge: #e9966f;
+  --jl-editorial-card-sage-base: #364246;
+  --jl-editorial-card-sage-light: #54746f;
+  --jl-editorial-card-sage-edge: #a4b7a7;
+  --jl-editorial-card-plum-base: #353545;
+  --jl-editorial-card-plum-light: #675779;
+  --jl-editorial-card-plum-edge: #b398ba;
+  --jl-editorial-card-min-height: 184px;
+  --jl-editorial-card-action-size: 44px;
+  --jl-editorial-card-title-size: clamp(20px, 1.52vw, 26px);
+}

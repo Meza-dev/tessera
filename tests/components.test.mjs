@@ -100,6 +100,19 @@ test('ProjectCard composes a custom link without nesting anchors', async () => {
   assert.match(html, /href="\/experiments\/example"/);
 });
 
+test('editorial cards keep a single accessible project link without rendering unrequested badges', async () => {
+  const { ProjectCard } = await server.ssrLoadModule('/packages/ui/src/project-card.tsx');
+  const html = renderToStaticMarkup(createElement(ProjectCard, {
+    title: 'Featured project', description: 'A concise project description', tags: ['Unrequested badge'],
+    href: '/projects/featured', variant: 'editorial', tone: 'sage',
+  }));
+  assert.equal((html.match(/<a\s/g) ?? []).length, 1);
+  assert.match(html, /href="\/projects\/featured"/);
+  assert.match(html, /Featured project/);
+  assert.match(html, /A concise project description/);
+  assert.doesNotMatch(html, /Unrequested badge/);
+});
+
 test('font stylesheet is exported with local variable-font dependencies', async () => {
   const manifest = JSON.parse(await readFile('packages/tokens/package.json', 'utf8'));
   const css = await readFile(`packages/tokens/${manifest.exports['./fonts.css']}`, 'utf8');
