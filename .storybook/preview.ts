@@ -7,7 +7,7 @@ import './preview.css';
 const preview: Preview = {
   tags: ['autodocs'],
   parameters: {
-    backgrounds: { options: { dark: { name: 'Dark', value: 'var(--jl-bg)' } } },
+    backgrounds: { options: { dark: { name: 'Dark', value: 'var(--tessera-bg)' } } },
   },
   initialGlobals: { backgrounds: { value: 'dark' } },
 };

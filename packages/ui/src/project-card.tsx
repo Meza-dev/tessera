@@ -15,15 +15,15 @@ export type ProjectCardProps = {
 export function ProjectCard({title,description,tags,visual,href,renderLink,variant='default',tone='warm'}: ProjectCardProps) {
  const feedback = useInteractiveMotion<HTMLAnchorElement>();
  const editorial = variant === 'editorial';
- const className = editorial ? 'jl-card jl-card--editorial' : 'jl-card';
+ const className = editorial ? 'jl-card jl-card--editorial tessera-card tessera-card--editorial' : 'jl-card tessera-card';
  const surface = editorial ? { 'data-tone': tone } : {};
  const content = <>
-  <div className="jl-card__visual" aria-hidden="true">{visual}</div>
-  <div className="jl-card__heading"><h3>{title}</h3>{href && <span className="jl-card__arrow" aria-hidden="true">↗</span>}</div>
+  <div className="jl-card__visual tessera-card__visual" aria-hidden="true">{visual}</div>
+  <div className="jl-card__heading tessera-card__heading"><h3>{title}</h3>{href && <span className="jl-card__arrow tessera-card__arrow" aria-hidden="true">↗</span>}</div>
   <p>{description}</p>
-  {!editorial && <div className="jl-card__tags">{tags.map(t=><Badge key={t}>{t}</Badge>)}</div>}
+  {!editorial && <div className="jl-card__tags tessera-card__tags">{tags.map(t=><Badge key={t}>{t}</Badge>)}</div>}
  </>;
  if (!href) return <article className={className} {...surface}>{content}</article>;
- const linkProps: LinkRenderProps = { href, className: `${className} jl-motion-control`, children: content, ref: feedback.ref, ...surface, ...feedback.handlers };
+ const linkProps: LinkRenderProps = { href, className: `${className} jl-motion-control tessera-motion-control`, children: content, ref: feedback.ref, ...surface, ...feedback.handlers };
  return renderLink ? renderLink(linkProps) : <a {...linkProps} />;
 }

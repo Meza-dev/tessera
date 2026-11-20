@@ -42,14 +42,15 @@ export function ContentTransition({ children, className = '' }: ContentTransitio
     });
     return () => playback.stop();
   }, [enabled, animate, scope]);
-  return <div ref={scope} className={`jl-motion-content ${className}`.trim()}>{children}</div>;
+  return <div ref={scope} className={`jl-motion-content tessera-motion-content ${className}`.trim()}>{children}</div>;
 }
 
 export type ActiveIndicatorProps = { id: string };
 export function ActiveIndicator({ id }: ActiveIndicatorProps) {
   const enabled = useMotionAllowed();
-  if (!enabled) return <span aria-hidden="true" className="jl-active-indicator" />;
-  return <motion.span aria-hidden="true" className="jl-active-indicator"
+  const className = 'jl-active-indicator tessera-active-indicator';
+  if (!enabled) return <span aria-hidden="true" className={className} />;
+  return <motion.span aria-hidden="true" className={className}
     initial={false} layoutId={id} transition={transition} />;
 }
 

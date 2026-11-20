@@ -16,7 +16,7 @@ export function ActionLink({ href, variant = 'primary', className = '', renderLi
   const feedback = useInteractiveMotion<HTMLAnchorElement>();
   const linkProps: LinkRenderProps = {
     ...props, ...mergeMotionHandlers(props, feedback.handlers), href, ref: feedback.ref,
-    className: `jl-btn jl-btn--${variant} jl-motion-control ${className}`.trim(),
+    className: `jl-btn jl-btn--${variant} jl-motion-control tessera-btn tessera-btn--${variant} tessera-motion-control ${className}`.trim(),
   };
   return renderLink ? renderLink(linkProps) : <a {...linkProps} />;
 }

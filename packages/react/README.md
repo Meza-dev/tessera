@@ -25,4 +25,6 @@ export function PrintButton() {
 
 Use `ActionLink` for navigation, `Badge` for compact labels, and `ProjectCard` for project summaries. `MotionProvider` uses the system's motion preference by default. Use `reducedMotion="always"` to suppress shared transform and layout effects within its subtree.
 
+Use `--tessera-*` tokens, `.tessera-*` classes and `data-tessera-theme` for new styles. For example, `data-tessera-theme="editorial"` enables the light palette and `--tessera-font-sans` selects Geist Sans. Existing `--jl-*`, `.jl-*` and `data-jl-theme` names remain supported.
+
 TESSERA is MIT-licensed. Included Geist font files are available under OFL-1.1 with notices next to the font assets.

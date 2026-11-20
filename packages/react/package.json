@@ -1,6 +1,6 @@
 {
   "name": "@tessera-system/tessera",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "TESSERA design tokens, Geist fonts, motion styles and React components.",
   "license": "MIT",
   "type": "module",
