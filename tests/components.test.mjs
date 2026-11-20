@@ -34,6 +34,42 @@ test('the public TESSERA package resolves its React, motion and standalone CSS e
   }
 });
 
+test('public React components emit TESSERA classes and legacy classes together', async () => {
+  const { Button, ActionLink, Badge, ProjectCard, ContentTransition, ActiveIndicator } = await import('@tessera-system/tessera');
+  const cases = [
+    [createElement(Button, { variant: 'secondary' }, 'Button'), ['btn', 'btn--secondary', 'motion-control']],
+    [createElement(ActionLink, { href: '#example' }, 'Link'), ['btn', 'btn--primary', 'motion-control']],
+    [createElement(Badge, null, 'Badge'), ['badge']],
+    [createElement(ProjectCard, { href: '#project', title: 'Project', description: 'A card', tags: ['CSS'] }), ['card', 'card__visual', 'card__heading', 'card__arrow', 'card__tags', 'motion-control']],
+    [createElement(ContentTransition, null, 'Content'), ['motion-content']],
+    [createElement(ActiveIndicator, { id: 'preview' }), ['active-indicator']],
+  ];
+  for (const [element, expected] of cases) {
+    const classes = new Set([...renderToStaticMarkup(element).matchAll(/class="([^"]+)"/g)].flatMap(match => match[1].split(' ')));
+    for (const name of expected) {
+      assert.ok(classes.has(`tessera-${name}`), `Missing tessera-${name}`);
+      assert.ok(classes.has(`jl-${name}`), `Missing jl-${name}`);
+    }
+  }
+});
+
+test('distributed CSS retains the legacy theme, token, focus and motion contracts', async () => {
+  const readExport = name => readFile(new URL(import.meta.resolve(`@tessera-system/tessera/${name}`)), 'utf8');
+  const [theme, styles, motion] = await Promise.all(['theme.css', 'styles.css', 'motion.css'].map(readExport));
+  for (const name of ['editorial', 'violet']) {
+    assert.ok(theme.includes(`[data-tessera-theme='${name}']`));
+    assert.ok(theme.includes(`[data-jl-theme='${name}']`));
+  }
+  for (const name of new Set([...theme.matchAll(/--tessera-([\w-]+):/g)].map(match => match[1]))) {
+    assert.match(theme, new RegExp(`--jl-${name}\\s*:\\s*var\\(--tessera-${name}\\)`));
+  }
+  assert.match(styles, /:is\(\.tessera-btn, \.jl-btn\):focus-visible/);
+  assert.match(styles, /var\(--jl-text, var\(--tessera-text\)\)/);
+  assert.match(motion, /:is\(\.tessera-interactive, \.jl-interactive\):not\(:disabled\):hover/);
+  assert.match(motion, /--jl-duration-base:\s*var\(--tessera-duration-base\)/);
+  assert.match(motion, /prefers-reduced-motion: reduce[\s\S]*\.tessera-motion-content[\s\S]*\.jl-motion-content/);
+});
+
 test('only the consolidated TESSERA workspace is public and CSS installs have no runtime dependencies', async () => {
   const directories = await readdir('packages', { withFileTypes: true });
   const manifests = await Promise.all(directories.filter(entry => entry.isDirectory()).map(async entry =>

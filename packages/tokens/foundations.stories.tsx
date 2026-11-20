@@ -4,12 +4,12 @@ const colors = ['bg', 'surface', 'surface-raised', 'border', 'text', 'text-muted
 const spaces = [1, 2, 3, 4, 6, 8, 12];
 
 function Foundations({ theme }: { theme?: 'violet' | 'editorial' }) {
-  return <div className="token-example" data-jl-theme={theme}>
+  return <div className="token-example" data-tessera-theme={theme}>
     <h2>Colors</h2>
     <ul className="token-example__palette">
       {colors.map(color => <li key={color}>
-        <span aria-hidden="true" style={{ backgroundColor: `var(--jl-${color})` }} />
-        <code>--jl-{color}</code>
+        <span aria-hidden="true" style={{ backgroundColor: `var(--tessera-${color})` }} />
+        <code>--tessera-{color}</code>
       </li>)}
     </ul>
     <h2>Typography</h2>
@@ -18,8 +18,8 @@ function Foundations({ theme }: { theme?: 'violet' | 'editorial' }) {
     <h2>Spacing</h2>
     <ul className="token-example__spacing">
       {spaces.map(space => <li key={space}>
-        <span aria-hidden="true" style={{ width: `var(--jl-space-${space})` }} />
-        <code>--jl-space-{space}</code>
+        <span aria-hidden="true" style={{ width: `var(--tessera-space-${space})` }} />
+        <code>--tessera-space-{space}</code>
       </li>)}
     </ul>
   </div>;

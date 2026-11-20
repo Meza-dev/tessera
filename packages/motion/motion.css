@@ -1,20 +1,31 @@
 /* Generated from tokens.json. Run npm run build to refresh. */
 :root {
-  --jl-duration-fast: 120ms;
-  --jl-duration-base: 220ms;
-  --jl-duration-slow: 360ms;
-  --jl-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --jl-ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
-  --jl-hover-lift: -2px;
-  --jl-entrance-distance: 8px;
-  --jl-press-scale: 0.98;
-  --jl-indicator-thickness: 2px;
+  --tessera-duration-fast: 120ms;
+  --tessera-duration-base: 220ms;
+  --tessera-duration-slow: 360ms;
+  --tessera-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --tessera-ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --tessera-hover-lift: -2px;
+  --tessera-entrance-distance: 8px;
+  --tessera-press-scale: 0.98;
+  --tessera-indicator-thickness: 2px;
 }
-.jl-interactive { transition: transform var(--jl-duration-base) var(--jl-ease-out), border-color var(--jl-duration-base) ease, background var(--jl-duration-base) ease; }
+:where(:root, [data-tessera-theme]) {
+  --jl-duration-fast: var(--tessera-duration-fast);
+  --jl-duration-base: var(--tessera-duration-base);
+  --jl-duration-slow: var(--tessera-duration-slow);
+  --jl-ease-out: var(--tessera-ease-out);
+  --jl-ease-standard: var(--tessera-ease-standard);
+  --jl-hover-lift: var(--tessera-hover-lift);
+  --jl-entrance-distance: var(--tessera-entrance-distance);
+  --jl-press-scale: var(--tessera-press-scale);
+  --jl-indicator-thickness: var(--tessera-indicator-thickness);
+}
+:is(.tessera-interactive, .jl-interactive) { transition: transform var(--jl-duration-base, var(--tessera-duration-base)) var(--jl-ease-out, var(--tessera-ease-out)), border-color var(--jl-duration-base, var(--tessera-duration-base)) ease, background var(--jl-duration-base, var(--tessera-duration-base)) ease; }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .jl-interactive:not(:disabled):hover { transform: translateY(var(--jl-hover-lift)); }
+  :is(.tessera-interactive, .jl-interactive):not(:disabled):hover { transform: translateY(var(--jl-hover-lift, var(--tessera-hover-lift))); }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0ms !important; transition-duration: 0ms !important; scroll-behavior: auto !important; }
-  .jl-motion-content, .jl-motion-control { transform: none !important; }
+  .tessera-motion-content, .jl-motion-content, .tessera-motion-control, .jl-motion-control { transform: none !important; }
 }

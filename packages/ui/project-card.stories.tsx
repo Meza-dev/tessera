@@ -19,7 +19,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 export const Linked: Story = { args: { href: '#example-experiment' } };
 export const Editorial: Story = {
-  decorators: [Story => <div data-jl-theme="editorial" style={{ maxWidth: 440 }}><Story /></div>],
+  decorators: [Story => <div data-tessera-theme="editorial" style={{ maxWidth: 440 }}><Story /></div>],
   args: { variant: 'editorial', tone: 'sage', href: '#example-experiment', visual: '◇' },
 };
 export const EditorialWarm: Story = { ...Editorial, args: { ...Editorial.args, tone: 'warm' } };

@@ -11,7 +11,7 @@ TESSERA is the design system name. The approved visual direction is FORM / LAB.
 Inspired by Vercel Geist's clarity, but not a copy of its interface. Dark graphite foundation, refined white text, subtle borders, generous whitespace, expressive typography and restrained generative artwork. Cyan and violet accents with **reduced saturation**. Precise values are **provisional**.
 
 TESSERA defaults to the dark palette. Applications can opt in to
-`data-jl-theme="editorial"` for warm cream surfaces, graphite text and terracotta
+`data-tessera-theme="editorial"` for warm cream surfaces, graphite text and terracotta
 accents. Shared controls and cards use semantic tokens, including the optional
 editorial card treatment in warm, sage or plum. Applications supply their own artwork.
 

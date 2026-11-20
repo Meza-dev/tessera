@@ -13,10 +13,24 @@ The public package declares React, React DOM and Motion as optional peers so ins
 
 ## Interface contracts
 
-- The `--jl-*` CSS properties, `.jl-*` classes and `data-jl-theme` attribute retain their established names.
 - `ActionLink` and `ProjectCard` have a typed `renderLink` prop so applications can compose router links with anchor semantics. A card without a destination renders as an article.
 - `MotionProvider` follows the system setting by default and accepts `reducedMotion="always"`. An unknown initial setting also suppresses React transform and layout effects while leaving content visible.
 - Both build and Storybook use the automatic JSX runtime. Storybook prebundles React and React DOM for browser-compatible CommonJS interop.
+
+## CSS compatibility
+
+Use `--tessera-*` CSS properties, `.tessera-*` classes and `data-tessera-theme` in new styles. Components emit both class families, and the stylesheets support either class family for hand-authored markup. Existing `data-jl-theme` and `--jl-*` names still work.
+
+The canonical theme attribute takes priority when both attributes are on one element. Tokens assigned directly to a theme scope override inherited values. The compatibility aliases are evaluated on `:root` and on elements with `data-tessera-theme`. Legacy theme sections refresh the aliases for the values they change.
+
+Components give existing `--jl-*` overrides priority. CSS custom properties resolve where they are declared, so for a component override on an arbitrary nested element, assign the canonical property and its legacy alias in that scope.
+
+```css
+.example-scope {
+  --tessera-control-min-height: 48px;
+  --jl-control-min-height: var(--tessera-control-min-height);
+}
+```
 
 ## Application adoption
 

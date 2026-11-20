@@ -15,10 +15,10 @@ Open the local address printed in your terminal. Start with **Design tokens** to
 
 ## Install from npm
 
-TESSERA is available on npm as [`@tessera-system/tessera`](https://www.npmjs.com/package/@tessera-system/tessera). Install version `0.1.0` with the command below.
+TESSERA is available on npm as [`@tessera-system/tessera`](https://www.npmjs.com/package/@tessera-system/tessera). The examples below use the canonical CSS names introduced in `0.1.1`. For earlier versions, use the corresponding `--jl-*`, `.jl-*` and `data-jl-theme` names.
 
 ```sh
-npm install @tessera-system/tessera@0.1.0
+npm install @tessera-system/tessera
 ```
 
 ### React
@@ -39,7 +39,7 @@ export function App() {
 }
 ```
 
-Apply `font-family: var(--jl-font-sans)` to your page and use `var(--jl-font-mono)` for code. The dark theme is the default. Add `data-jl-theme="violet"` or `data-jl-theme="editorial"` to a containing element to opt in to a different palette.
+Apply `font-family: var(--tessera-font-sans)` to your page and use `var(--tessera-font-mono)` for code. The dark theme is the default. Add `data-tessera-theme="violet"` or `data-tessera-theme="editorial"` to a containing element to opt in to a different palette. Existing apps can keep using the [compatibility names](docs/ARCHITECTURE.md#css-compatibility).
 
 ### CSS outside React
 
@@ -51,9 +51,9 @@ The CSS exports work with any framework and install without the React peers. Use
 @import '@tessera-system/tessera/motion.css';
 
 body {
-  background: var(--jl-bg);
-  color: var(--jl-text);
-  font-family: var(--jl-font-sans);
+  background: var(--tessera-bg);
+  color: var(--tessera-text);
+  font-family: var(--tessera-font-sans);
 }
 ```
 
@@ -73,6 +73,7 @@ npm run build
 npm run typecheck
 npm test
 npm run build-storybook
+npm run smoke:package
 ```
 
 See the [contribution guide](CONTRIBUTING.md), [architecture](docs/ARCHITECTURE.md) and [MIT license](LICENSE). The Geist fonts are [distributed under OFL-1.1](https://github.com/vercel/geist-font/blob/main/OFL.txt).
